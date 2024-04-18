@@ -6,7 +6,7 @@ import avatarImg from '../../../assets/images/placeholder.jpg'
 
 const MenuDropdown = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { user } = useAuth()
+  const { user, logOut } = useAuth()
 
   return (
     <div className='relative'>
@@ -46,6 +46,26 @@ const MenuDropdown = () => {
               Home
             </Link>
 
+           {
+            user? 
+            <>
+            <Link
+              to='/dashboard'
+              className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+            >
+              Dashboard
+            </Link>
+            <div
+              onClick={logOut}
+              className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
+            >
+              Logout
+            </div>
+            </>
+
+            :
+
+            <>
             <Link
               to='/login'
               className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
@@ -58,6 +78,10 @@ const MenuDropdown = () => {
             >
               Sign Up
             </Link>
+            </>
+
+
+           }
           </div>
         </div>
       )}

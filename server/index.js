@@ -43,6 +43,8 @@ const client = new MongoClient(process.env.DB_URI, {
 })
 async function run() {
   try {
+    const usersCollection = client.db('stayVistaDb').collection('users')
+
     // auth related api
     app.post('/jwt', async (req, res) => {
       const user = req.body
@@ -84,6 +86,7 @@ async function run() {
       const isExist = await usersCollection.findOne(query)
       console.log('User found?----->', isExist)
       if (isExist) return res.send(isExist)
+     
       const result = await usersCollection.updateOne(
         query,
         {

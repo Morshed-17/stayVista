@@ -8,14 +8,13 @@ const CategoryBox = ({ label, icon: Icon, selected }) => {
     if (params) {
       currentQuery = qs.parse(params.toString());
     }
-      const updatedQuery = { ...currentQuery, category: label };
+    const updatedQuery = { ...currentQuery, category: label };
 
-      const url = qs.stringifyUrl({
-        url: "/",
-        query: updatedQuery,
-      });
-      navigate(url);
-    
+    const url = qs.stringifyUrl({
+      url: "/",
+      query: updatedQuery,
+    });
+    navigate(url);
   };
   params.get("category");
 
@@ -24,7 +23,11 @@ const CategoryBox = ({ label, icon: Icon, selected }) => {
       onClick={handleClick}
       className={`
         flex flex-col items-center justify-center gap-2 p-3 border-b-2  hover:text-neutral-800 transition cursor-pointer
-        ${selected ? "text-neutral-800 border-b-neutral-800 " : " text-neutral-500"}
+        ${
+          selected
+            ? "text-neutral-800 border-b-neutral-800 "
+            : " text-neutral-500"
+        }
     `}
     >
       <Icon size={26} />

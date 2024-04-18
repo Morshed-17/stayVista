@@ -7,6 +7,9 @@ import Header from "../../components/RoomDetails/Header";
 import RoomInfo from "../../components/RoomDetails/RoomInfo";
 import Calender from "../../components/RoomDetails/Calender";
 import RoomReservation from "../../components/RoomDetails/RoomReservation";
+
+
+
 const RoomDetails = () => {
   const { id } = useParams();
   const [room, setRoom] = useState({});
@@ -37,9 +40,9 @@ const RoomDetails = () => {
         <Header room={room}/>
         
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-7 mt-12">
+        <div className="grid grid-cols-1  gap-6 md:grid-cols-7 mt-12">
           <RoomInfo room={room}/>
-          <div className="md:col-span-3 order-first md:order-last mb-10">
+          <div className="md:col-span-3 col-span-7 order-first md:order-last mb-10">
             <RoomReservation room={room}/>
           </div>
         </div>
