@@ -1,20 +1,33 @@
-import { differenceInDays } from "date-fns";
+import {  formatDistance } from "date-fns";
 import Button from "../Button/Button";
 import Calender from "./Calender";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const RoomReservation = ({ room }) => {
-  // days calcualtion
-  const totalDays = differenceInDays(new Date(room?.to), new Date(room?.from));
-  // price calcualtion
-  const totalPrice = parseFloat(room?.price * totalDays);
-
   const [value, setValue] = useState({
-    startDate: new Date(room?.from),
-    endDate: new Date(room?.to),
-    key: "selection",
+    startDate: null,
+    endDate: null,
+    key: 'selection',
   });
+  useEffect(() => {
+    if (room) {
+      setValue({
+        startDate: new Date(room.from),
+        endDate: new Date(room.to),
+        key: 'selection',
+      });
+    }
+  }, [room]);
 
+    // Total days * price
+  const totalDays = parseInt(
+    formatDistance(new Date(room?.to), new Date(room?.from)).split(' ')[0]
+  )
+  // Total Price Calculation
+  const totalPrice = totalDays * room?.price
+
+  
   return (
     <div className="rounded-xl border border-neutral-200 overflow-hidden bg-white">
       <div className="flex items-center gap-1 p-4">
